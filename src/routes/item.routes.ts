@@ -4,6 +4,15 @@ import { validateItem } from "../middleware/validate-item.middleware";
 
 const router = Router();
 
+// Health check endpoint
+router.get("/", (_req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "🍽️ Welcome to the Item Management REST API 🚀",
+  });
+});
+
+// Item routes
 router.get("/items", itemController.getItems);
 router.get("/items/:id", itemController.getItem);
 router.post("/items", validateItem, itemController.createItem);
