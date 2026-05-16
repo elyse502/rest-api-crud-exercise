@@ -4,19 +4,10 @@ import { validateItem } from "../middleware/validate-item.middleware";
 
 const router = Router();
 
-// Health check endpoint
-router.get("/", (_req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "🍽️ Welcome to the Item Management REST API 🚀",
-  });
-});
-
-// Item routes
-router.get("/items", itemController.getItems);
-router.get("/items/:id", itemController.getItem);
-router.post("/items", validateItem, itemController.createItem);
-router.put("/items/:id", validateItem, itemController.updateItem);
-router.delete("/items/:id", itemController.deleteItem);
+router.get("/", itemController.getItems);
+router.get("/:id", itemController.getItem);
+router.post("/", validateItem, itemController.createItem);
+router.put("/:id", validateItem, itemController.updateItem);
+router.delete("/:id", itemController.deleteItem);
 
 export default router;
